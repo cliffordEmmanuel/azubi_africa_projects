@@ -1,10 +1,10 @@
 # Project: URL Shortner
 # Azubi Africa Cohort 1- Getinnotized
-# Date: Friday 17th January, 2020.
-# Written by: Vanessa Quartey and Clifford E. Akai-Nettey
 
 import random
 import csv
+import json
+
 
 # accept the url and url validation 
 #checking for https:// , and special keys
@@ -14,12 +14,24 @@ if("https://" in url and".com" in url and "www." in url ):
 else:
   print("kindly enter a secured url") 
 
+
+# so the challenge is to make sure that the script doesn't accept the same url
 # shorten it
 def shorten(url):
     short_url = 'https://' + 'short.lnk/'+ rand_gen() 
-    return [ url, short_url]
+    return (url ,short_url )
+    
 
-ch_list = [ chr(i) for i in range(33,127)]  #generate the ascii characters
+def url_exists(url):
+    # open the file and check if the long url has already been processed
+    with open('links.csv', mode='r') as l_file:
+        reader = csv.reader(l_file)
+        for row in reader:
+            if row[0] == url:
+                return True
+
+
+ch_list = [chr(i) for i in range(48,127)]  #generate the ascii characters
 
 # to make sure shortened links don't repeat.. 
 def rand_gen():
@@ -29,9 +41,19 @@ def rand_gen():
 
 # appending to a csv file
 
-link_pair = shorten(url)
+def to_file(link_dict):
+    with open('links.csv','a', newline= '') as f:
+        write = csv.writer(f)
+        write.writerow(link_dict)
+    f.close()
 
-with open('links.csv', mode='a') as data:
-    write = csv.writer(data, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
-    write.writerow(link_pair)
-data.close()
+
+# this is the entry point for the program
+if __name__ == "__main__":
+    url = input("Enter your url: ")
+    if not url_exists(url):
+        link_dict = shorten(url)
+        to_file(link_dict)
+        print('URL saved')
+    else:
+        print('URL already saved. Enter a new one')
