@@ -32,3 +32,8 @@ with open('links.csv', mode='a') as data:
     write.writerow(link_pair)
 
 data.close()
+
+
+# this is the entry point for the program
+if __name__ == "__main__":
+    pass
