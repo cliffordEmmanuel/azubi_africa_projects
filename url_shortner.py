@@ -35,4 +35,10 @@ data.close()
 
 # this is the entry point for the program
 if __name__ == "__main__":
-    pass
+    url = input("Enter your url: ")
+    if not url_exists(url):
+        link_dict = shorten(url)
+        to_file(link_dict)
+        print('URL saved')
+    else:
+        print('URL already saved. Enter a new one')
