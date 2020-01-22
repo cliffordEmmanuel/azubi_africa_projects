@@ -9,6 +9,10 @@ import csv
 # accept the url and url validation 
 #checking for https:// , and special keys
 url = input("Enter your url: ")
+if("https://" in url and".com" in url and "www." in url ):
+  print(url)
+else:
+  print("kindly enter a secured url") 
 
 # shorten it
 def shorten(url):
@@ -30,5 +34,4 @@ link_pair = shorten(url)
 with open('links.csv', mode='a') as data:
     write = csv.writer(data, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
     write.writerow(link_pair)
-
 data.close()
