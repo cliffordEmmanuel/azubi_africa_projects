@@ -6,7 +6,8 @@
 import random
 import csv
 
-# accept the url
+# accept the url and url validation 
+#checking for https:// , and special keys
 url = input("Enter your url: ")
 
 # shorten it
