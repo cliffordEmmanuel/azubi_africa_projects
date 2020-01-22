@@ -41,11 +41,6 @@ def to_file(link_dict):
 
 
 # this is the entry point for the program
-<<<<<<< HEAD
-if __name__ == "__main__":  
-    pass
-
-=======
 if __name__ == "__main__":
     url = input("Enter your url: ")
     if not url_exists(url):
@@ -54,4 +49,3 @@ if __name__ == "__main__":
         print('URL saved')
     else:
         print('URL already saved. Enter a new one')
->>>>>>> add_main
