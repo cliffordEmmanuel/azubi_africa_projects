@@ -5,8 +5,7 @@ import random
 import csv
 import json
 
-# accept the url
-
+url = input('Enter your url:')
 
 # so the challenge is to make sure that the script doesn't accept the same url
 # shorten it
