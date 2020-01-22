@@ -5,7 +5,15 @@ import random
 import csv
 import json
 
-url = input('Enter your url:')
+
+# accept the url and url validation 
+#checking for https:// , and special keys
+url = input("Enter your url: ")
+if("https://" in url and".com" in url and "www." in url ):
+  print(url)
+else:
+  print("kindly enter a secured url") 
+
 
 # so the challenge is to make sure that the script doesn't accept the same url
 # shorten it
