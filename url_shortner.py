@@ -3,20 +3,13 @@
 
 import random
 import csv
-import json
-
 
 # accept the url and url validation 
 #checking for https:// , and special keys
-url = input("Enter your url: ")
-if("https://" in url and".com" in url and "www." in url ):
-  print(url)
-else:
-  print("kindly enter a secured url") 
+def url_validator():
+    pass
 
 
-# so the challenge is to make sure that the script doesn't accept the same url
-# shorten it
 def shorten(url):
     short_url = 'https://' + 'short.lnk/'+ rand_gen() 
     return (url ,short_url )
@@ -30,8 +23,8 @@ def url_exists(url):
             if row[0] == url:
                 return True
 
-
-ch_list = [chr(i) for i in range(48,127)]  #generate the ascii characters
+l = [58,59,60,61,62,63,64,91,92,93,94,95,96]  # removing the special characters
+ch_list = [chr(i) for i in range(48,122) if i not in l]  #generate the ascii characters
 
 # to make sure shortened links don't repeat.. 
 def rand_gen():
@@ -41,19 +34,30 @@ def rand_gen():
 
 # appending to a csv file
 
-def to_file(link_dict):
+def to_file(link):
     with open('links.csv','a', newline= '') as f:
         write = csv.writer(f)
-        write.writerow(link_dict)
+        write.writerow(link)
     f.close()
 
 
+def search_by_long_url():
+    pass
+
+def search_by_short_url():
+    pass
+        
 # this is the entry point for the program
 if __name__ == "__main__":
-    url = input("Enter your url: ")
+    url = input("Enter the url: ")
     if not url_exists(url):
         link_dict = shorten(url)
         to_file(link_dict)
         print('URL saved')
     else:
         print('URL already saved. Enter a new one')
+
+
+# search by long url
+# search by short url
+# allows should see a shortened url.
